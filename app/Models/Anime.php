@@ -11,8 +11,9 @@ class Anime extends Model
 
     protected $fillable = [
         'anime_id',
-        'name',
-        'course',
-        'year',
+        'image_url',
+        'title',
+        'score',
+        'episodes'
     ];
 }

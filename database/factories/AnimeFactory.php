@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,11 +17,18 @@ class AnimeFactory extends Factory
      */
     public function definition(): array
     {
+        $randomPage = rand(1, 5);
+    
+        $response = Http::withoutVerifying()
+            ->get("https://api.jikan.moe/v4/top/anime?filter=bypopularity&page={$randomPage}&sfw=true");
+
+        $anime = collect($response->json('data'))->random();
         return [
-            'anime_id' => $this->faker->unique()->numerify('S-####'),
-            'name' => $this->faker->name(),
-            'course' => $this->faker->randomElement(['BSIS', 'BAB', 'BSAIS', 'BSSW', 'BSA']),
-            'year' => $this->faker->numberBetween(1, 4),
+            'anime_id' => $anime['mal_id'],
+            'image_url' => $anime['images']['jpg']['large_image_url'],
+            'title' => $anime['title_english'],
+            'score' => $anime['score'],
+            'episodes' => $anime['episodes'],
         ];
     }
 }

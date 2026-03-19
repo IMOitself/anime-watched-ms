@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animes List</title>
+    <title>Anime List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-5">
         <div class="row mb-4">
             <div class="col">
-                <h1>Animes List</h1>
+                <h1>Anime List</h1>
             </div>
             <div class="col text-end">
                 <a href="{{ route('animes.create') }}" class="btn btn-primary">Add New Anime</a>
@@ -30,19 +30,20 @@
                     <thead>
                         <tr>
                             <th>Anime ID</th>
-                            <th>Name</th>
-                            <th>Course</th>
-                            <th>Year</th>
-                            <th>Actions</th>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Score</th>
+                            <th>Episodes</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($animes as $anime)
                             <tr>
                                 <td>{{ $anime->anime_id }}</td>
-                                <td>{{ $anime->name }}</td>
-                                <td>{{ $anime->course }}</td>
-                                <td>{{ $anime->year }}</td>
+                                <td><img src="{{ $anime->image_url }}" style="height: 75px;"></td>
+                                <td>{{ $anime->title }}</td>
+                                <td>{{ $anime->score }}</td>
+                                <td>{{ $anime->episodes }}</td>
                                 <td>
                                     <a href="{{ route('animes.show', $anime->id) }}" class="btn btn-sm btn-info">View</a>
                                     <a href="{{ route('animes.edit', $anime->id) }}" class="btn btn-sm btn-warning">Edit</a>

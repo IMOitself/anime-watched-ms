@@ -38,9 +38,10 @@ class AnimeController extends Controller
     {
         $request->validate([
             'anime_id' => 'required|unique:animes,anime_id',
-            'name' => 'required',
-            'course' => 'required|in:BSIS,BAB,BSAIS,BSSW,BSA',
-            'year' => 'required|integer|min:1|max:4',
+            'image_url' => 'required',
+            'title' => 'required',
+            'score' => 'required',
+            'episodes' => 'required',
         ]);
 
         Anime::create($request->all());
@@ -72,10 +73,11 @@ class AnimeController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'anime_id' => 'required|unique:animes,anime_id,' . $id,
-            'name' => 'required',
-            'course' => 'required|in:BSIS,BAB,BSAIS,BSSW,BSA',
-            'year' => 'required|integer|min:1|max:4',
+            'anime_id' => 'required',
+            'image_url' => 'required',
+            'title' => 'required',
+            'score' => 'required',
+            'episodes' => 'required',
         ]);
 
         $anime = Anime::findOrFail($id);

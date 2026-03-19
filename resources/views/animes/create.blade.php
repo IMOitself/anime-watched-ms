@@ -25,6 +25,14 @@
                             </div>
                         @endif
 
+                        <form action="{{ route('animes.store') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="anime_id" value="{{$anime['mal_id']}}">
+                            <input type="hidden" name="image_url" value="{{$anime['images']['jpg']['large_image_url']}}">
+                            <input type="hidden" name="title" value="{{$anime['title_english']}}">
+                            <input type="hidden" name="score" value="{{$anime['score']}}">
+                            <input type="hidden" name="episodes" value="{{$anime['episodes']}}">
+
                             <div style='align-items: center; text-align: center; font-family: sans-serif; padding: 50px;'>
                                 <img src='{{$anime['images']['jpg']['large_image_url']}}' style='height: 200px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);'>
                                 <h3>{{$anime['title_english']}}</h3>

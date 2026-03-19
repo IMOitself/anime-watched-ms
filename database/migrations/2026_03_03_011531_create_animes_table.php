@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('animes', function (Blueprint $table) {
             $table->id();
             $table->string('anime_id')->unique();
-            $table->string('name');
-            $table->enum('course', ['BSIS', 'BAB', 'BSAIS', 'BSSW', 'BSA']);
-            $table->year('year');
+            $table->string('image_url');
+            $table->string('title');
+            $table->float('score');
+            $table->integer('episodes');
             $table->timestamps();
         });
     }
