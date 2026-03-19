@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use App\Models\Anime;
 
@@ -21,7 +22,13 @@ class AnimeController extends Controller
      */
     public function create()
     {
-        return view('animes.create');
+        $randomPage = rand(1, 5);
+    
+        $response = Http::withoutVerifying()
+            ->get("https://api.jikan.moe/v4/top/anime?filter=bypopularity&page={$randomPage}&sfw=true");
+
+        $anime = collect($response->json('data'))->random();
+        return view('animes.create', compact('anime'));
     }
 
     /**

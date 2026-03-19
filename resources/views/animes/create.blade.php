@@ -25,61 +25,18 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('animes.store') }}" method="POST">
-                            @csrf
-
-                            <div class="mb-3">
-                                <label for="anime_id" class="form-label">Anime ID</label>
-                                <input type="text" class="form-control @error('anime_id') is-invalid @enderror" 
-                                       id="anime_id" name="anime_id" value="{{ old('anime_id') }}" required>
-                                @error('anime_id')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" 
-                                       id="name" name="name" value="{{ old('name') }}" required>
-                                @error('name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="course" class="form-label">Course</label>
-                                <select class="form-select @error('course') is-invalid @enderror" 
-                                        id="course" name="course" required>
-                                    <option value="">Select Course</option>
-                                    <option value="BSIS" {{ old('course') == 'BSIS' ? 'selected' : '' }}>BSIS</option>
-                                    <option value="BAB" {{ old('course') == 'BAB' ? 'selected' : '' }}>BAB</option>
-                                    <option value="BSAIS" {{ old('course') == 'BSAIS' ? 'selected' : '' }}>BSAIS</option>
-                                    <option value="BSSW" {{ old('course') == 'BSSW' ? 'selected' : '' }}>BSSW</option>
-                                    <option value="BSA" {{ old('course') == 'BSA' ? 'selected' : '' }}>BSA</option>
-                                </select>
-                                @error('course')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="year" class="form-label">Year</label>
-                                <select class="form-select @error('year') is-invalid @enderror" 
-                                        id="year" name="year" required>
-                                    <option value="">Select Year</option>
-                                    <option value="1" {{ old('year') == '1' ? 'selected' : '' }}>1</option>
-                                    <option value="2" {{ old('year') == '2' ? 'selected' : '' }}>2</option>
-                                    <option value="3" {{ old('year') == '3' ? 'selected' : '' }}>3</option>
-                                    <option value="4" {{ old('year') == '4' ? 'selected' : '' }}>4</option>
-                                </select>
-                                @error('year')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                            <div style='align-items: center; text-align: center; font-family: sans-serif; padding: 50px;'>
+                                <img src='{{$anime['images']['jpg']['large_image_url']}}' style='height: 200px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);'>
+                                <h3>{{$anime['title_english']}}</h3>
+                                <p>⭐{{$anime['score']}} | {{$anime['episodes']}} episodes | rank {{$anime['rank']}}</p>
                             </div>
 
                             <div class="d-flex justify-content-between">
-                                <a href="{{ route('animes.index') }}" class="btn btn-secondary">Cancel</a>
-                                <button type="submit" class="btn btn-primary">Create Anime</button>
+                                <a href="{{ route('animes.index') }}" class="btn btn-secondary">Back</a>
+                                <a href="{{ route('animes.create') }}" class="btn btn-primary" onclick="this.classList.add('disabled'); this.innerText='Rolling...';">
+                                    Roll Random Anime
+                                </a>
+                                <button type="submit" class="btn btn-secondary">Add Anime</button>
                             </div>
                         </form>
                     </div>
