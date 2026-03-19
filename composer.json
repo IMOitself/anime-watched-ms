@@ -37,6 +37,14 @@
         }
     },
     "scripts": {
+        "fix-cloned-repo-imo": [
+            "composer install",
+        	"@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+        	"@php artisan key:generate",
+        	"@php artisan config:cache",
+        	"@php -r \"file_exists('database/database.sqlite') || fclose(fopen('database/database.sqlite', 'w'));\"",
+        	"@php artisan migrate"
+        ],
         "setup": [
             "composer install",
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
