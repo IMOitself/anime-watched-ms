@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Student;
+use App\Models\Anime;
 
-class StudentController extends Controller
+class AnimeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $students = Student::paginate(10);
-        return view('students.index', compact('students'));
+        $animes = Anime::paginate(10);
+        return view('animes.index', compact('animes'));
     }
 
     /**
@@ -21,7 +21,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        return view('animes.create');
     }
 
     /**
@@ -30,15 +30,15 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'student_id' => 'required|unique:students,student_id',
+            'anime_id' => 'required|unique:animes,anime_id',
             'name' => 'required',
             'course' => 'required|in:BSIS,BAB,BSAIS,BSSW,BSA',
             'year' => 'required|integer|min:1|max:4',
         ]);
 
-        Student::create($request->all());
+        Anime::create($request->all());
 
-        return redirect()->route('students.index')->with('success', 'Student created successfully.');
+        return redirect()->route('animes.index')->with('success', 'Anime created successfully.');
     }
 
     /**
@@ -46,8 +46,8 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
-        $student = Student::findOrFail($id);
-        return view('students.show', compact('student'));
+        $anime = Anime::findOrFail($id);
+        return view('animes.show', compact('anime'));
     }
 
     /**
@@ -55,8 +55,8 @@ class StudentController extends Controller
      */
     public function edit(string $id)
     {
-        $student = Student::findOrFail($id);
-        return view('students.edit', compact('student'));
+        $anime = Anime::findOrFail($id);
+        return view('animes.edit', compact('anime'));
     }
 
     /**
@@ -65,16 +65,16 @@ class StudentController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'student_id' => 'required|unique:students,student_id,' . $id,
+            'anime_id' => 'required|unique:animes,anime_id,' . $id,
             'name' => 'required',
             'course' => 'required|in:BSIS,BAB,BSAIS,BSSW,BSA',
             'year' => 'required|integer|min:1|max:4',
         ]);
 
-        $student = Student::findOrFail($id);
-        $student->update($request->all());
+        $anime = Anime::findOrFail($id);
+        $anime->update($request->all());
 
-        return redirect()->route('students.index')->with('success', 'Student updated successfully.');
+        return redirect()->route('animes.index')->with('success', 'Anime updated successfully.');
     }
 
     /**
@@ -82,9 +82,9 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        $student = Student::findOrFail($id);
-        $student->delete();
+        $anime = Anime::findOrFail($id);
+        $anime->delete();
 
-        return redirect()->route('students.index')->with('success', 'Student deleted successfully.');
+        return redirect()->route('animes.index')->with('success', 'Anime deleted successfully.');
     }
 }

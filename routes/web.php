@@ -1,10 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\AnimeController;
 
 Route::get('/', function () {
-    return redirect()->route('students.index');
+    return redirect()->route('animes.index');
 });
 
-Route::resource('students', StudentController::class);
+Route::resource('animes', AnimeController::class);
