@@ -15,16 +15,6 @@
                         <h3>Add New Anime</h3>
                     </div>
                     <div class="card-body">
-                        @if($errors->any())
-                            <div class="alert alert-danger">
-                                <ul class="mb-0">
-                                    @foreach($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
                         <form action="{{ route('animes.store') }}" method="POST">
                             @csrf
                             <input type="hidden" name="anime_id" value="{{$anime->anime_id}}">
