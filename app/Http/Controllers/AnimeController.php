@@ -22,6 +22,8 @@ class AnimeController extends Controller
      */
     public function create()
     {
+        $anime = new Anime();
+        
         $randomPage = rand(1, 5);
         $response = Http::withoutVerifying()
             ->get("https://api.jikan.moe/v4/top/anime?filter=bypopularity&page={$randomPage}&sfw=true");
