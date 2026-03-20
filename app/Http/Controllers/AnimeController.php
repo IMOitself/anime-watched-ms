@@ -29,7 +29,7 @@ class AnimeController extends Controller
             ->get("https://api.jikan.moe/v4/top/anime?filter=bypopularity&page={$randomPage}&sfw=true");
         $apiAnime = collect($response->json('data'))->random();
         
-        $anime->anime_id = $apiAnime['mal_id'];
+        $anime->mal_id = $apiAnime['mal_id'];
         $anime->image_url = $apiAnime['images']['jpg']['large_image_url'] ?? 'not available';
         $anime->title = $apiAnime['title_english'] ?? $apiAnime['title'] ?? 'Unknown';
         $anime->score = $apiAnime['score'] ?? 0;
@@ -43,7 +43,7 @@ class AnimeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'anime_id' => 'required|unique:animes,anime_id',
+            'mal_id' => 'required',
             'image_url' => 'required',
             'title' => 'required',
             'score' => 'required',
@@ -74,7 +74,7 @@ class AnimeController extends Controller
                 ->get("https://api.jikan.moe/v4/top/anime?filter=bypopularity&page={$randomPage}&sfw=true");
             $apiAnime = collect($response->json('data'))->random();
             
-            $anime->anime_id = $apiAnime['mal_id'];
+            $anime->mal_id = $apiAnime['mal_id'];
             $anime->image_url = $apiAnime['images']['jpg']['large_image_url'] ?? 'not available';
             $anime->title = $apiAnime['title_english'] ?? $apiAnime['title'] ?? 'Unknown';
             $anime->score = $apiAnime['score'] ?? 0;
@@ -90,7 +90,7 @@ class AnimeController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'anime_id' => 'required',
+            'mal_id' => 'required',
             'image_url' => 'required',
             'title' => 'required',
             'score' => 'required',

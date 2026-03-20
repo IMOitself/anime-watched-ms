@@ -24,7 +24,7 @@ class AnimeFactory extends Factory
 
         $anime = collect($response->json('data'))->random();
         return [
-            'anime_id' => $anime['mal_id'],
+            'mal_id' => $anime['mal_id'],
             'image_url' => $anime['images']['jpg']['large_image_url'],
             'title' => $anime['title_english'],
             'score' => $anime['score'],

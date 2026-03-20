@@ -17,7 +17,7 @@
                     <div class="card-body">
                         <form action="{{ route('animes.store') }}" method="POST">
                             @csrf
-                            <input type="hidden" name="anime_id" value="{{$anime->anime_id}}">
+                            <input type="hidden" name="mal_id" value="{{$anime->mal_id}}">
                             <input type="hidden" name="image_url" value="{{$anime->image_url}}">
                             <input type="hidden" name="title" value="{{$anime->title}}">
                             <input type="hidden" name="score" value="{{$anime->score}}">

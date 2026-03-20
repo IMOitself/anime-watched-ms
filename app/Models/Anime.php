@@ -10,7 +10,7 @@ class Anime extends Model
     use HasFactory;
 
     protected $fillable = [
-        'anime_id',
+        'mal_id',
         'image_url',
         'title',
         'score',

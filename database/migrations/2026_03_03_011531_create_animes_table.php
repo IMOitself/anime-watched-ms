@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('animes', function (Blueprint $table) {
             $table->id();
-            $table->string('anime_id')->unique();
+            $table->string('mal_id');
             $table->string('image_url');
             $table->string('title');
             $table->float('score');

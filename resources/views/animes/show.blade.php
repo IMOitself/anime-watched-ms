@@ -18,7 +18,7 @@
                         <table class="table table-bordered">
                             <tr>
                                 <th width="200">Anime ID</th>
-                                <td>{{ $anime->anime_id }}</td>
+                                <td>{{ $anime->mal_id }}</td>
                             </tr>
                             <tr>
                                 <th>Image</th>

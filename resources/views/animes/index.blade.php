@@ -37,7 +37,7 @@
                     <tbody>
                         @forelse($animes as $anime)
                             <tr>
-                                <td>{{ $anime->anime_id }}</td>
+                                <td>{{ $anime->mal_id }}</td>
                                 <td><img src="{{ $anime->image_url }}" style="height: 75px;"></td>
                                 <td>{{ $anime->title }}</td>
                                 <td>
