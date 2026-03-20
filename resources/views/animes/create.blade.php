@@ -34,7 +34,7 @@
                             <div style='align-items: center; text-align: center; font-family: sans-serif; padding: 50px;'>
                                 <img src='{{$anime->image_url}}' style='height: 200px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);'>
                                 <h3>{{$anime->title}}</h3>
-                                <p>⭐{{$anime->score}} | {{$anime->episodes}} episodes | rank {{$anime->rank}}</p>
+                                <p>⭐{{$anime->score}} | {{$anime->episodes}} episodes</p>
                             </div>
 
                             <div class="d-flex justify-content-between">
