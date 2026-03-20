@@ -23,11 +23,15 @@ class AnimeController extends Controller
     public function create()
     {
         $randomPage = rand(1, 5);
-    
         $response = Http::withoutVerifying()
             ->get("https://api.jikan.moe/v4/top/anime?filter=bypopularity&page={$randomPage}&sfw=true");
-
-        $anime = collect($response->json('data'))->random();
+        $apiAnime = collect($response->json('data'))->random();
+        
+        $anime->anime_id = $apiAnime['mal_id'];
+        $anime->image_url = $apiAnime['images']['jpg']['large_image_url'] ?? 'not available';
+        $anime->title = $apiAnime['title_english'] ?? $apiAnime['title'] ?? 'Unknown';
+        $anime->score = $apiAnime['score'] ?? 0;
+        $anime->episodes = $apiAnime['episodes'] ?? 0;
         return view('animes.create', compact('anime'));
     }
 
@@ -69,7 +73,7 @@ class AnimeController extends Controller
             $apiAnime = collect($response->json('data'))->random();
             
             $anime->anime_id = $apiAnime['mal_id'];
-            $anime->image_url = $apiAnime['images']['jpg']['large_image_url'] ?? '';
+            $anime->image_url = $apiAnime['images']['jpg']['large_image_url'] ?? 'not available';
             $anime->title = $apiAnime['title_english'] ?? $apiAnime['title'] ?? 'Unknown';
             $anime->score = $apiAnime['score'] ?? 0;
             $anime->episodes = $apiAnime['episodes'] ?? 0;
