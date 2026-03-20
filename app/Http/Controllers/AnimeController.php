@@ -64,7 +64,7 @@ class AnimeController extends Controller
 
         Anime::create($request->all());
 
-        return redirect()->route('animes.index')->with('success', 'Anime created successfully.');
+        return redirect()->route('animes.index')->with('success', 'Anime added successfully.');
     }
 
     /**
@@ -124,7 +124,7 @@ class AnimeController extends Controller
         $anime = Anime::findOrFail($id);
         $anime->update($request->all());
 
-        return redirect()->route('animes.index')->with('success', 'Anime updated successfully.');
+        return redirect()->route('animes.index')->with('success', 'Anime changed successfully.');
     }
 
     /**
@@ -135,6 +135,6 @@ class AnimeController extends Controller
         $anime = Anime::findOrFail($id);
         $anime->delete();
 
-        return redirect()->route('animes.index')->with('success', 'Anime deleted successfully.');
+        return redirect()->route('animes.index')->with('success', 'Anime removed successfully.');
     }
 }
