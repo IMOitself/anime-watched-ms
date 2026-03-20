@@ -2,7 +2,7 @@
 simplest way to list how many anime you have watched
 <br><br>
 > [!NOTE]
->  i use [api.jikan.moe](https://jikan.moe/) for getting anime data :)
+>  i use [api.jikan.moe](https://jikan.moe/) in getting anime data :)
 
 <img width="854" height="480" alt="Screenshot 2026-03-20 142816" src="https://github.com/user-attachments/assets/24a33ebc-d775-475c-9fc4-6b13678edb97" />
 
