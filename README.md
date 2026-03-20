@@ -11,7 +11,8 @@ to convert the existing Student Management CRUD ([LVCCWAD/student-ms](https://gi
 
 <details><summary><h3>database table </summary>
 
-WIP
+<img width="854" height="480" alt="Screenshot 2026-03-20 144426" src="https://github.com/user-attachments/assets/c5ded6b7-a547-40a7-a480-63ad47fc7439" />
+
     
 </details>
 <details><summary><h3>screenshots </summary>
