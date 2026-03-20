@@ -32,8 +32,6 @@
                             <th>Anime ID</th>
                             <th>Image</th>
                             <th>Title</th>
-                            <th>Score</th>
-                            <th>Episodes</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,8 +40,6 @@
                                 <td>{{ $anime->anime_id }}</td>
                                 <td><img src="{{ $anime->image_url }}" style="height: 75px;"></td>
                                 <td>{{ $anime->title }}</td>
-                                <td>{{ $anime->score }}</td>
-                                <td>{{ $anime->episodes }}</td>
                                 <td>
                                     <a href="{{ route('animes.show', $anime->id) }}" class="btn btn-sm btn-info">View</a>
                                     <a href="{{ route('animes.edit', $anime->id) }}" class="btn btn-sm btn-warning">Edit</a>
