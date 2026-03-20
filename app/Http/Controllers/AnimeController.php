@@ -58,12 +58,23 @@ class AnimeController extends Controller
         return view('animes.show', compact('anime'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(Request $request, string $id)
     {
         $anime = Anime::findOrFail($id);
+
+        if ($request->has('roll')) {
+            $randomPage = rand(1, 5);
+            $response = Http::withoutVerifying()
+                ->get("https://api.jikan.moe/v4/top/anime?filter=bypopularity&page={$randomPage}&sfw=true");
+            $apiAnime = collect($response->json('data'))->random();
+            
+            $anime->anime_id = $apiAnime['mal_id'];
+            $anime->image_url = $apiAnime['images']['jpg']['large_image_url'] ?? '';
+            $anime->title = $apiAnime['title_english'] ?? $apiAnime['title'] ?? 'Unknown';
+            $anime->score = $apiAnime['score'] ?? 0;
+            $anime->episodes = $apiAnime['episodes'] ?? 0;
+        }
+
         return view('animes.edit', compact('anime'));
     }
 

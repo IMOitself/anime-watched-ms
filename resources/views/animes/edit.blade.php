@@ -29,57 +29,24 @@
                             @csrf
                             @method('PUT')
 
-                            <div class="mb-3">
-                                <label for="anime_id" class="form-label">Anime ID</label>
-                                <input type="text" class="form-control @error('anime_id') is-invalid @enderror" 
-                                       id="anime_id" name="anime_id" value="{{ old('anime_id', $anime->anime_id) }}" required>
-                                @error('anime_id')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+                            <input type="hidden" name="anime_id" value="{{$anime->anime_id}}">
+                            <input type="hidden" name="image_url" value="{{$anime->image_url}}">
+                            <input type="hidden" name="title" value="{{$anime->title}}">
+                            <input type="hidden" name="score" value="{{$anime->score}}">
+                            <input type="hidden" name="episodes" value="{{$anime->episodes}}">
 
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" 
-                                       id="name" name="name" value="{{ old('name', $anime->name) }}" required>
-                                @error('name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="course" class="form-label">Course</label>
-                                <select class="form-select @error('course') is-invalid @enderror" 
-                                        id="course" name="course" required>
-                                    <option value="">Select Course</option>
-                                    <option value="BSIS" {{ old('course', $anime->course) == 'BSIS' ? 'selected' : '' }}>BSIS</option>
-                                    <option value="BAB" {{ old('course', $anime->course) == 'BAB' ? 'selected' : '' }}>BAB</option>
-                                    <option value="BSAIS" {{ old('course', $anime->course) == 'BSAIS' ? 'selected' : '' }}>BSAIS</option>
-                                    <option value="BSSW" {{ old('course', $anime->course) == 'BSSW' ? 'selected' : '' }}>BSSW</option>
-                                    <option value="BSA" {{ old('course', $anime->course) == 'BSA' ? 'selected' : '' }}>BSA</option>
-                                </select>
-                                @error('course')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="year" class="form-label">Year</label>
-                                <select class="form-select @error('year') is-invalid @enderror" 
-                                        id="year" name="year" required>
-                                    <option value="">Select Year</option>
-                                    <option value="1" {{ old('year', $anime->year) == '1' ? 'selected' : '' }}>1</option>
-                                    <option value="2" {{ old('year', $anime->year) == '2' ? 'selected' : '' }}>2</option>
-                                    <option value="3" {{ old('year', $anime->year) == '3' ? 'selected' : '' }}>3</option>
-                                    <option value="4" {{ old('year', $anime->year) == '4' ? 'selected' : '' }}>4</option>
-                                </select>
-                                @error('year')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                            <div style='align-items: center; text-align: center; font-family: sans-serif; padding: 50px;'>
+                                <img src='{{$anime->image_url}}' style='height: 200px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);'>
+                                <h3>{{$anime->title}}</h3>
+                                <p>⭐{{$anime->score}} | {{$anime->episodes}} episodes</p>
                             </div>
 
                             <div class="d-flex justify-content-between">
-                                <a href="{{ route('animes.index') }}" class="btn btn-secondary">Cancel</a>
+                                <a href="{{ route('animes.index') }}" class="btn btn-secondary">Back</a>
+                                <!-- refresh and roll anime :D -->
+                                <a href="{{ route('animes.edit', ['anime' => $anime->id, 'roll' => 1]) }}" class="btn btn-primary" onclick="this.classList.add('disabled'); this.innerText='Rolling...';">
+                                    Roll Random Anime
+                                </a>
                                 <button type="submit" class="btn btn-primary">Update Anime</button>
                             </div>
                         </form>

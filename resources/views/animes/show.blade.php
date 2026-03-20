@@ -21,16 +21,20 @@
                                 <td>{{ $anime->anime_id }}</td>
                             </tr>
                             <tr>
-                                <th>Name</th>
-                                <td>{{ $anime->name }}</td>
+                                <th>Image</th>
+                                <td>{{ $anime->image_url }}</td>
                             </tr>
                             <tr>
-                                <th>Course</th>
-                                <td>{{ $anime->course }}</td>
+                                <th>Title</th>
+                                <td>{{ $anime->title }}</td>
                             </tr>
                             <tr>
-                                <th>Year</th>
-                                <td>{{ $anime->year }}</td>
+                                <th>Score</th>
+                                <td>{{ $anime->score }}</td>
+                            </tr>
+                            <tr>
+                                <th>Episodes</th>
+                                <td>{{ $anime->episodes }}</td>
                             </tr>
                             <tr>
                                 <th>Created At</th>
