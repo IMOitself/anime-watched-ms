@@ -13,8 +13,14 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">
-                        <h3>Add New Anime</h3>
+                    <div class="card-header" style="display: flex; flex-direction: row; align-items: center;">
+                        <h3 style="flex: 1">Add New Anime</h3>
+                         <!-- refresh to search for anime :D -->
+                        <input type="text" id="search" value="{{$anime->title}}">
+                        <a href="{{ route('animes.create') }}" class="btn" 
+                           onclick="this.href += '?search=' + document.getElementById('search').value; this.disabled = true;">
+                            Search
+                        </a>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('animes.store') }}" method="POST">
@@ -33,7 +39,7 @@
 
                             <div class="d-flex justify-content-between">
                                 <a href="{{ route('animes.index') }}" class="btn btn-secondary">Back</a>
-                                <a href="{{ route('animes.create') }}" class="btn btn-primary" onclick="this.classList.add('disabled'); this.innerText='Rolling...';">
+                                <a href="{{ route('animes.create') }}" class="btn btn-primary" onclick="this.disabled = true; this.innerText='Rolling...';">
                                     Roll Random Anime
                                 </a>
                                 <button type="submit" class="btn btn-secondary">Add Anime</button>

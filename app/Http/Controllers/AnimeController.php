@@ -20,14 +20,23 @@ class AnimeController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         $anime = new Anime();
-        
-        $randomPage = rand(1, 5);
-        $response = Http::withoutVerifying()
-            ->get("https://api.jikan.moe/v4/top/anime?filter=bypopularity&page={$randomPage}&sfw=true");
-        $apiAnime = collect($response->json('data'))->random();
+        $apiAnime = null;
+
+        if ($request->has('search')) {
+            $response = Http::withoutVerifying()
+                ->get("https://api.jikan.moe/v4/anime?q={$request->search}&limit=1");
+            $apiAnime = collect($response->json('data'))[0];
+        }
+        // roll random anime
+        else {
+            $randomPage = rand(1, 5);
+            $response = Http::withoutVerifying()
+                ->get("https://api.jikan.moe/v4/top/anime?filter=bypopularity&page={$randomPage}&sfw=true");
+            $apiAnime = collect($response->json('data'))->random();
+        }
         
         $anime->mal_id = $apiAnime['mal_id'];
         $anime->image_url = $apiAnime['images']['jpg']['large_image_url'] ?? 'not available';
