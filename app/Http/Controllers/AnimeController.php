@@ -28,7 +28,10 @@ class AnimeController extends Controller
         if ($request->has('search')) {
             $response = Http::withoutVerifying()
                 ->get("https://api.jikan.moe/v4/anime?q={$request->search}&limit=1");
-            $apiAnime = collect($response->json('data'))[0];
+            $responseJson = $response->json('data');
+            if ($responseJson == null) return redirect()->route('animes.create')->with('error', "{$request->search} not found.");
+
+            $apiAnime = $responseJson[0];
         }
         // roll random anime
         else {
@@ -37,7 +40,7 @@ class AnimeController extends Controller
                 ->get("https://api.jikan.moe/v4/top/anime?filter=bypopularity&page={$randomPage}&sfw=true");
             $apiAnime = collect($response->json('data'))->random();
         }
-        
+
         $anime->mal_id = $apiAnime['mal_id'];
         $anime->image_url = $apiAnime['images']['jpg']['large_image_url'] ?? 'not available';
         $anime->title = $apiAnime['title_english'] ?? $apiAnime['title'] ?? 'Unknown';

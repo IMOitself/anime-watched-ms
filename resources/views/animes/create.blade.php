@@ -23,6 +23,12 @@
                         </a>
                     </div>
                     <div class="card-body">
+                        @if(session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+
                         <form action="{{ route('animes.store') }}" method="POST">
                             @csrf
                             <input type="hidden" name="mal_id" value="{{$anime->mal_id}}">
