@@ -18,7 +18,7 @@
                          <!-- refresh to search for anime :D -->
                         <input type="text" id="search" value="{{$anime->title}}">
                         <a href="{{ route('animes.create') }}" class="btn" 
-                           onclick="this.href += '?search=' + document.getElementById('search').value; this.disabled = true;">
+                           onclick="this.href += '?search=' + document.getElementById('search').value; this.classList.add('disabled');">
                             Search
                         </a>
                     </div>
@@ -45,7 +45,7 @@
 
                             <div class="d-flex justify-content-between">
                                 <a href="{{ route('animes.index') }}" class="btn btn-secondary">Back</a>
-                                <a href="{{ route('animes.create') }}" class="btn btn-primary" onclick="this.disabled = true; this.innerText='Rolling...';">
+                                <a href="{{ route('animes.create') }}" class="btn btn-primary" onclick="this.classList.add('disabled'); this.innerText='Rolling...';">
                                     Roll Random Anime
                                 </a>
                                 <button type="submit" class="btn btn-secondary">Add Anime</button>
