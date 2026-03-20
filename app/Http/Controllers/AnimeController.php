@@ -79,13 +79,25 @@ class AnimeController extends Controller
     public function edit(Request $request, string $id)
     {
         $anime = Anime::findOrFail($id);
+        $apiAnime = null;
 
+        if ($request->has('search')) {
+            $response = Http::withoutVerifying()
+                ->get("https://api.jikan.moe/v4/anime?q={$request->search}&limit=1");
+            $responseJson = $response->json('data');
+            if ($responseJson == null) return redirect()->route('animes.edit', $anime->id)->with('error', "{$request->search} not found.");
+
+            $apiAnime = $responseJson[0];
+        }
+        else
         if ($request->has('roll')) {
             $randomPage = rand(1, 5);
             $response = Http::withoutVerifying()
                 ->get("https://api.jikan.moe/v4/top/anime?filter=bypopularity&page={$randomPage}&sfw=true");
             $apiAnime = collect($response->json('data'))->random();
-            
+        }
+
+        if ($request->has('search') || $request->has('roll')) {
             $anime->mal_id = $apiAnime['mal_id'];
             $anime->image_url = $apiAnime['images']['jpg']['large_image_url'] ?? 'not available';
             $anime->title = $apiAnime['title_english'] ?? $apiAnime['title'] ?? 'Unknown';

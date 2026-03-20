@@ -13,10 +13,21 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">
-                        <h3>Edit Anime</h3>
+                   <div class="card-header" style="display: flex; flex-direction: row; align-items: center;">
+                        <h3 style="flex: 1">Edit Anime</h3>
+                         <!-- refresh to search for anime :D -->
+                        <input type="text" id="search" value="{{$anime->title}}">
+                        <a href="{{ route('animes.edit', $anime->id) }}" class="btn btn-secondary" 
+                           onclick="this.href += '?search=' + document.getElementById('search').value; this.classList.add('disabled');">
+                            Search
+                        </a>
                     </div>
                     <div class="card-body">
+                        @if(session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <form action="{{ route('animes.update', $anime->id) }}" method="POST">
                             @csrf
                             @method('PUT')
