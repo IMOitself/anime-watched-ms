@@ -1,5 +1,10 @@
 # Anime Watched Management System :D
 simplest way to list how many anime you have watched
+
+- [midterm (wad-laravel-act1 to 4)](https://github.com/IMOitself/wad-laravel-act1)
+- anime-watched-ms
+- [wad-laravel-react-act2-3](https://github.com/IMOitself/wad-laravel-react-act2-3)
+
 <br><br>
 > [!NOTE]
 >  i use [api.jikan.moe](https://jikan.moe/) in getting anime data :)
